@@ -170,30 +170,30 @@ export default function EmployerDashboard() {
   }, [paymentHistory]);
 
   // Sort the payments
-  const sortedPayments = useMemo(() => {
-    if (!formattedPayments.length) return [];
+  // const sortedPayments = useMemo(() => {
+  //   if (!formattedPayments.length) return [];
 
-    return [...formattedPayments].sort((a, b) => {
-      if (sortField === "date" || sortField === "timestamp") {
-        const dateA = new Date(a.rawData.timestamp * 1000);
-        const dateB = new Date(b.rawData.timestamp * 1000);
-        return sortDirection === "asc" ? dateA - dateB : dateB - dateA;
-      }
+  //   return [...formattedPayments].sort((a, b) => {
+  //     if (sortField === "date" || sortField === "timestamp") {
+  //       const dateA = new Date(a.rawData.timestamp * 1000);
+  //       const dateB = new Date(b.rawData.timestamp * 1000);
+  //       return sortDirection === "asc" ? dateA - dateB : dateB - dateA;
+  //     }
 
-      if (sortField === "amount") {
-        const amountA = Number(a.rawData.amount);
-        const amountB = Number(b.rawData.amount);
-        return sortDirection === "asc" ? amountA - amountB : amountB - amountA;
-      }
+  //     if (sortField === "amount") {
+  //       const amountA = Number(a.rawData.amount);
+  //       const amountB = Number(b.rawData.amount);
+  //       return sortDirection === "asc" ? amountA - amountB : amountB - amountA;
+  //     }
 
-      // Default string comparison for other fields
-      const valA = a[sortField];
-      const valB = b[sortField];
-      return sortDirection === "asc"
-        ? valA.localeCompare(valB)
-        : valB.localeCompare(valA);
-    });
-  }, [formattedPayments, sortField, sortDirection]);
+  //     // Default string comparison for other fields
+  //     const valA = a[sortField];
+  //     const valB = b[sortField];
+  //     return sortDirection === "asc"
+  //       ? valA.localeCompare(valB)
+  //       : valB.localeCompare(valA);
+  //   });
+  // }, [formattedPayments, sortField, sortDirection]);
 
   // if (isLoading) return <div>Loading payment history...</div>;
   // if (isError) return <div>Error loading payment history</div>;
@@ -430,7 +430,7 @@ export default function EmployerDashboard() {
                     </TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
+                {/* <TableBody>
                   {sortedPayments.map((payment) => (
                     <TableRow key={payment.id}>
                       <TableCell className="font-medium">
@@ -446,7 +446,7 @@ export default function EmployerDashboard() {
                       <TableCell>{payment.date}</TableCell>
                     </TableRow>
                   ))}
-                </TableBody>
+                </TableBody> */}
               </Table>
             </div>
           </CardContent>

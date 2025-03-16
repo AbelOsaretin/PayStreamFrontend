@@ -5,7 +5,7 @@ import Link from "next/link";
 import { WalletComponents } from "./WalletComponent";
 import { Title } from "@radix-ui/react-toast";
 
-export function DashNavBar({ titleName }) {
+export function DashNavBar(titleName: any) {
   return (
     <nav className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
