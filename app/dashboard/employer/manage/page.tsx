@@ -338,6 +338,7 @@ import { useWriteContract } from "wagmi";
 import PayStreamABI from "../../../../ContractABI/PayStream";
 import { getAddress, formatEther } from "viem";
 import { toast } from "sonner";
+import useProcessPayment from "@/hooks/WriteHooks/useProcessPayment";
 
 export default function ManageEmployees() {
   const router = useRouter();
@@ -359,6 +360,7 @@ export default function ManageEmployees() {
   const { writeContract } = useWriteContract();
   const addNewEmployee = useAddEmployee();
   const approveEmployeeKYC = useApproveEmployeeKYC();
+  const processPayment = useProcessPayment();
 
   // Get all employees using our custom hook
 
@@ -385,10 +387,27 @@ export default function ManageEmployees() {
     }
   };
 
-  const handlePay = () => {
-    console.log("Payment processed with amount:", payText);
-    setPayModalOpen(false);
-    setPayText("");
+  const handlePay = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      // Show loading toast (optional)
+      const loadingToast = toast.loading("Processing Payment...");
+
+      await processPayment(payText);
+
+      // Clear loading toast and show success
+      toast.dismiss(loadingToast);
+      toast.success("Payment Processed successfully!");
+      console.log("Payment processed for:", payText);
+      setPayModalOpen(false);
+      setPayText("");
+    } catch (error) {
+      // Show error toast without dismissing previous toasts
+      toast.error("Error processing payment. Please try again.");
+      console.error(error);
+      // Don't close the modal on error so user can try again
+    }
   };
 
   // const handleAddEmployee = async (e: any) => {

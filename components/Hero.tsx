@@ -16,10 +16,13 @@ export function Hero() {
 
   const handleClick = () => {
     if (status === "connected") {
-      console.log("Role is: ", userRole);
-      router.replace("../dashboard/employer");
-    } else {
-      alert("Connect Wallet First");
+      if (userRole !== undefined && Number(userRole) === 1) {
+        router.push("../dashboard/employer");
+      } else if (userRole !== undefined && Number(userRole) === 2) {
+        router.push("../dashboard/employee");
+      } else {
+        router.push("/");
+      }
     }
   };
 

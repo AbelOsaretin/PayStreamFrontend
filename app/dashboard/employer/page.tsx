@@ -30,8 +30,11 @@ import {
 
 import useGetAllEmployeesCount from "@/hooks/ReadHooks/useGetAllEmployeesCount";
 import useGetEmployerPaymentHistory from "@/hooks/ReadHooks/useGetEmployerPaymentHistory";
+import useViewBalance from "@/hooks/ReadHooks/useViewBalance";
 import useSetEmployeeTaxRate from "@/hooks/WriteHooks/useSetEmployeeTaxRate";
 import useUpdateEmploeeSalary from "@/hooks/WriteHooks/useUpdateEmploeeSalary";
+import useDepositToken from "@/hooks/WriteHooks/useDepositToken";
+import useApproveToken from "@/hooks/WriteHooks/useApproveToken";
 
 // Sample payment history data
 const paymentHistory = [
@@ -88,20 +91,26 @@ export default function EmployerDashboard() {
     isLoading,
     isError,
   } = useGetEmployerPaymentHistory();
+  const { data: viewBalance } = useViewBalance();
   const setEmployeeTaxRate = useSetEmployeeTaxRate();
   const updateEmployeeSalary = useUpdateEmploeeSalary();
+  const approveToken = useApproveToken();
+  const depositToken = useDepositToken();
+
   const [sortField, setSortField] = useState("timestamp");
   const [sortDirection, setSortDirection] = useState("desc");
 
   // Modal states
   const [isSalaryModalOpen, setIsSalaryModalOpen] = useState(false);
   const [isTaxModalOpen, setIsTaxModalOpen] = useState(false);
+  const [isDepositModalOpen, setIsDepositModalOpen] = useState(false);
 
   // Form states
   const [salaryAmount, setSalaryAmount] = useState("");
   const [employeeAddressSalary, setEmployeeAddressSalary] = useState("");
   const [taxRate, setTaxRate] = useState("");
   const [employeeAddressTax, setEmployeeAddressTax] = useState("");
+  const [depositAmount, setDepositAmount] = useState("");
 
   // useEffect(() => {
   //   // Only check role if we have loaded the data and user is connected
@@ -192,8 +201,33 @@ export default function EmployerDashboard() {
   //   return <div>No payment history found</div>;
 
   const handleClick = () => {
-    console.log("Employees Count : ", allEmployeesCount);
-    console.log("Employees Payment History : ", employerPaymentHistory);
+    console.log("Contract Balance: ", viewBalance);
+  };
+
+  const handleDepositSubmit = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      // Show loading toast (optional)
+      const loadingToast = toast.loading("Depositing Funds...");
+      await approveToken(Number(depositAmount));
+
+      await depositToken(Number(depositAmount));
+
+      // Clear loading toast and show success
+      toast.dismiss(loadingToast);
+      toast.success("Funds Added successfully!");
+      console.log("Depositing:", {
+        Amount: depositAmount,
+      });
+      setIsDepositModalOpen(false);
+      setDepositAmount("");
+    } catch (error) {
+      // Show error toast without dismissing previous toasts
+      toast.error("Error depositing funds. Please try again.");
+      console.error(error);
+      // Don't close the modal on error so user can try again
+    }
   };
 
   const handleSalarySubmit = async (e: any) => {
@@ -260,7 +294,23 @@ export default function EmployerDashboard() {
         <br />
 
         {/* Stats Overview */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+
+        <div className="grid md:grid-cols-4 gap-6 mb-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Balance</CardTitle>
+              {/* <BarChart className="h-4 w-4 text-muted-foreground" /> */}
+              <DollarSign className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">${Number(viewBalance)}</div>
+              <p className="text-xs text-muted-foreground"></p>
+              <Button onClick={() => setIsDepositModalOpen(true)}>
+                Deposit
+              </Button>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
@@ -307,19 +357,6 @@ export default function EmployerDashboard() {
               </p>
             </CardContent>
           </Card>
-
-          {/* <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Analytics</CardTitle>
-              <BarChart className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">24.8%</div>
-              <p className="text-xs text-muted-foreground">
-                Efficiency increase
-              </p>
-            </CardContent>
-          </Card> */}
         </div>
 
         {/* Actions */}
@@ -337,7 +374,7 @@ export default function EmployerDashboard() {
             Set Tax
           </Button>
           {/* <Button className="w-full" onClick={handleClick}>
-            All Employees
+            Balance
           </Button> */}
         </div>
 
@@ -414,6 +451,29 @@ export default function EmployerDashboard() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Deposit Modal */}
+        <Dialog open={isDepositModalOpen} onOpenChange={setIsDepositModalOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Deposit</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Deposit Amount</label>
+                <Input
+                  type="number"
+                  placeholder="Enter amount"
+                  value={depositAmount}
+                  onChange={(e) => setDepositAmount(e.target.value)}
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button onClick={handleDepositSubmit}>Deposit</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
         {/* Salary Modal */}
         <Dialog open={isSalaryModalOpen} onOpenChange={setIsSalaryModalOpen}>

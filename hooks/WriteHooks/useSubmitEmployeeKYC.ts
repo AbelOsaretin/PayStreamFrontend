@@ -4,23 +4,22 @@ import { getAddress } from "viem";
 import { useCallback } from "react";
 import { parseEther } from "viem";
 
-const useSetEmployeeTaxRate = () => {
+const useSubmitEmployeeKYC = () => {
   const { writeContract } = useWriteContract();
 
   const contractAddress = process.env.NEXT_PUBLIC_PAYSTREAM_CONTRACT_ADDRESS;
   return useCallback(
-    async (_employeeAddress: string, _taxRate: number) => {
+    async (_documentHash: string) => {
       try {
         const result = writeContract({
           abi: PayStreamABI,
           address: getAddress(contractAddress ? contractAddress : ""),
-          functionName: "setEmployeeTaxRate",
-          args: [_employeeAddress, _taxRate.toString()],
+          functionName: "submitEmployeeKYC",
+          args: [_documentHash],
         });
-        console.log("Hook Tax Rate: ", _taxRate.toString());
         return result;
       } catch (err) {
-        console.error("Error setting Employee Tax:", err);
+        console.error("Error submitting Employee KYC:", err);
         throw err;
       }
     },
@@ -28,4 +27,4 @@ const useSetEmployeeTaxRate = () => {
   );
 };
 
-export default useSetEmployeeTaxRate;
+export default useSubmitEmployeeKYC;

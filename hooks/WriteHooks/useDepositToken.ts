@@ -4,28 +4,28 @@ import { getAddress } from "viem";
 import { useCallback } from "react";
 import { parseEther } from "viem";
 
-const useSetEmployeeTaxRate = () => {
+const useDepositToken = () => {
   const { writeContract } = useWriteContract();
 
   const contractAddress = process.env.NEXT_PUBLIC_PAYSTREAM_CONTRACT_ADDRESS;
+  const tokenAddress = process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS;
   return useCallback(
-    async (_employeeAddress: string, _taxRate: number) => {
+    async (_amount: number) => {
       try {
         const result = writeContract({
           abi: PayStreamABI,
           address: getAddress(contractAddress ? contractAddress : ""),
-          functionName: "setEmployeeTaxRate",
-          args: [_employeeAddress, _taxRate.toString()],
+          functionName: "depositToken",
+          args: [tokenAddress, parseEther(_amount.toString())],
         });
-        console.log("Hook Tax Rate: ", _taxRate.toString());
         return result;
       } catch (err) {
-        console.error("Error setting Employee Tax:", err);
+        console.error("Error Depositing Funds:", err);
         throw err;
       }
     },
-    [writeContract, contractAddress]
+    [writeContract, tokenAddress, contractAddress]
   );
 };
 
-export default useSetEmployeeTaxRate;
+export default useDepositToken;

@@ -1,32 +1,13 @@
 const PayStreamABI = [
-  {
-    type: "constructor",
-    inputs: [],
-    stateMutability: "nonpayable",
-  },
-  {
-    type: "receive",
-    stateMutability: "payable",
-  },
+  { type: "constructor", inputs: [], stateMutability: "nonpayable" },
+  { type: "receive", stateMutability: "payable" },
   {
     type: "function",
     name: "addEmployee",
     inputs: [
-      {
-        name: "_employeeAddress",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "_name",
-        type: "string",
-        internalType: "string",
-      },
-      {
-        name: "_salary",
-        type: "uint256",
-        internalType: "uint256",
-      },
+      { name: "_employeeAddress", type: "address", internalType: "address" },
+      { name: "_name", type: "string", internalType: "string" },
+      { name: "_salary", type: "uint256", internalType: "uint256" },
     ],
     outputs: [],
     stateMutability: "nonpayable",
@@ -35,11 +16,7 @@ const PayStreamABI = [
     type: "function",
     name: "approveEmployeeKYC",
     inputs: [
-      {
-        name: "_employeeAddress",
-        type: "address",
-        internalType: "address",
-      },
+      { name: "_employeeAddress", type: "address", internalType: "address" },
     ],
     outputs: [],
     stateMutability: "nonpayable",
@@ -48,77 +25,29 @@ const PayStreamABI = [
     type: "function",
     name: "depositToken",
     inputs: [
-      {
-        name: "_tokenAddress",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "_amountToDeposit",
-        type: "uint256",
-        internalType: "uint256",
-      },
+      { name: "_tokenAddress", type: "address", internalType: "address" },
+      { name: "_amountToDeposit", type: "uint256", internalType: "uint256" },
     ],
-    outputs: [
-      {
-        name: "success",
-        type: "bool",
-        internalType: "bool",
-      },
-    ],
-    stateMutability: "payable",
+    outputs: [{ name: "success", type: "bool", internalType: "bool" }],
+    stateMutability: "nonpayable",
   },
   {
     type: "function",
     name: "employees",
-    inputs: [
-      {
-        name: "",
-        type: "address",
-        internalType: "address",
-      },
-    ],
+    inputs: [{ name: "", type: "address", internalType: "address" }],
     outputs: [
-      {
-        name: "employeeAddress",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "name",
-        type: "string",
-        internalType: "string",
-      },
-      {
-        name: "salary",
-        type: "uint256",
-        internalType: "uint256",
-      },
-      {
-        name: "lastPaymentDate",
-        type: "uint256",
-        internalType: "uint256",
-      },
-      {
-        name: "isActive",
-        type: "bool",
-        internalType: "bool",
-      },
+      { name: "employeeAddress", type: "address", internalType: "address" },
+      { name: "name", type: "string", internalType: "string" },
+      { name: "salary", type: "uint256", internalType: "uint256" },
+      { name: "lastPaymentDate", type: "uint256", internalType: "uint256" },
+      { name: "isActive", type: "bool", internalType: "bool" },
       {
         name: "kycStatus",
         type: "uint8",
         internalType: "enum PayStream.KYCStatus",
       },
-      {
-        name: "kycDocumentHash",
-        type: "string",
-        internalType: "string",
-      },
-      {
-        name: "taxRate",
-        type: "uint256",
-        internalType: "uint256",
-      },
+      { name: "kycDocumentHash", type: "string", internalType: "string" },
+      { name: "taxRate", type: "uint256", internalType: "uint256" },
     ],
     stateMutability: "view",
   },
@@ -126,65 +55,27 @@ const PayStreamABI = [
     type: "function",
     name: "employeesCounter",
     inputs: [],
-    outputs: [
-      {
-        name: "",
-        type: "uint256",
-        internalType: "uint256",
-      },
-    ],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
     stateMutability: "view",
   },
   {
     type: "function",
     name: "employerToEmployees",
     inputs: [
-      {
-        name: "",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "",
-        type: "uint256",
-        internalType: "uint256",
-      },
+      { name: "", type: "address", internalType: "address" },
+      { name: "", type: "uint256", internalType: "uint256" },
     ],
-    outputs: [
-      {
-        name: "",
-        type: "address",
-        internalType: "address",
-      },
-    ],
+    outputs: [{ name: "", type: "address", internalType: "address" }],
     stateMutability: "view",
   },
   {
     type: "function",
     name: "employers",
-    inputs: [
-      {
-        name: "",
-        type: "address",
-        internalType: "address",
-      },
-    ],
+    inputs: [{ name: "", type: "address", internalType: "address" }],
     outputs: [
-      {
-        name: "employerAddress",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "name",
-        type: "string",
-        internalType: "string",
-      },
-      {
-        name: "isVerified",
-        type: "bool",
-        internalType: "bool",
-      },
+      { name: "employerAddress", type: "address", internalType: "address" },
+      { name: "name", type: "string", internalType: "string" },
+      { name: "isVerified", type: "bool", internalType: "bool" },
     ],
     stateMutability: "view",
   },
@@ -192,51 +83,19 @@ const PayStreamABI = [
     type: "function",
     name: "owner",
     inputs: [],
-    outputs: [
-      {
-        name: "",
-        type: "address",
-        internalType: "address",
-      },
-    ],
+    outputs: [{ name: "", type: "address", internalType: "address" }],
     stateMutability: "view",
   },
   {
     type: "function",
     name: "paymentHistory",
-    inputs: [
-      {
-        name: "",
-        type: "uint256",
-        internalType: "uint256",
-      },
-    ],
+    inputs: [{ name: "", type: "uint256", internalType: "uint256" }],
     outputs: [
-      {
-        name: "employer",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "employee",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "amount",
-        type: "uint256",
-        internalType: "uint256",
-      },
-      {
-        name: "timestamp",
-        type: "uint256",
-        internalType: "uint256",
-      },
-      {
-        name: "taxAmount",
-        type: "uint256",
-        internalType: "uint256",
-      },
+      { name: "employer", type: "address", internalType: "address" },
+      { name: "employee", type: "address", internalType: "address" },
+      { name: "amount", type: "uint256", internalType: "uint256" },
+      { name: "timestamp", type: "uint256", internalType: "uint256" },
+      { name: "taxAmount", type: "uint256", internalType: "uint256" },
     ],
     stateMutability: "view",
   },
@@ -249,24 +108,17 @@ const PayStreamABI = [
         type: "address",
         internalType: "address payable",
       },
+      { name: "_tokenAddress", type: "address", internalType: "address" },
     ],
     outputs: [],
-    stateMutability: "payable",
+    stateMutability: "nonpayable",
   },
   {
     type: "function",
     name: "registerEmployer",
     inputs: [
-      {
-        name: "_employerAddr",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "_name",
-        type: "string",
-        internalType: "string",
-      },
+      { name: "_employerAddr", type: "address", internalType: "address" },
+      { name: "_name", type: "string", internalType: "string" },
     ],
     outputs: [],
     stateMutability: "nonpayable",
@@ -275,16 +127,8 @@ const PayStreamABI = [
     type: "function",
     name: "rejectEmployeeKYC",
     inputs: [
-      {
-        name: "_employeeAddress",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "_reason",
-        type: "string",
-        internalType: "string",
-      },
+      { name: "_employeeAddress", type: "address", internalType: "address" },
+      { name: "_reason", type: "string", internalType: "string" },
     ],
     outputs: [],
     stateMutability: "nonpayable",
@@ -293,16 +137,8 @@ const PayStreamABI = [
     type: "function",
     name: "setEmployeeTaxRate",
     inputs: [
-      {
-        name: "_employeeAddress",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "_taxRate",
-        type: "uint256",
-        internalType: "uint256",
-      },
+      { name: "_employeeAddress", type: "address", internalType: "address" },
+      { name: "_taxRate", type: "uint256", internalType: "uint256" },
     ],
     outputs: [],
     stateMutability: "nonpayable",
@@ -310,13 +146,7 @@ const PayStreamABI = [
   {
     type: "function",
     name: "submitEmployeeKYC",
-    inputs: [
-      {
-        name: "_documentHash",
-        type: "string",
-        internalType: "string",
-      },
-    ],
+    inputs: [{ name: "_documentHash", type: "string", internalType: "string" }],
     outputs: [],
     stateMutability: "nonpayable",
   },
@@ -324,16 +154,8 @@ const PayStreamABI = [
     type: "function",
     name: "updateEmployeeSalary",
     inputs: [
-      {
-        name: "_employeeAddress",
-        type: "address",
-        internalType: "address",
-      },
-      {
-        name: "_newSalary",
-        type: "uint256",
-        internalType: "uint256",
-      },
+      { name: "_employeeAddress", type: "address", internalType: "address" },
+      { name: "_newSalary", type: "uint256", internalType: "uint256" },
     ],
     outputs: [],
     stateMutability: "nonpayable",
@@ -341,19 +163,9 @@ const PayStreamABI = [
   {
     type: "function",
     name: "userTypes",
-    inputs: [
-      {
-        name: "",
-        type: "address",
-        internalType: "address",
-      },
-    ],
+    inputs: [{ name: "", type: "address", internalType: "address" }],
     outputs: [
-      {
-        name: "",
-        type: "uint8",
-        internalType: "enum PayStream.UserType",
-      },
+      { name: "", type: "uint8", internalType: "enum PayStream.UserType" },
     ],
     stateMutability: "view",
   },
@@ -367,46 +179,18 @@ const PayStreamABI = [
         type: "tuple[]",
         internalType: "struct PayStream.Employee[]",
         components: [
-          {
-            name: "employeeAddress",
-            type: "address",
-            internalType: "address",
-          },
-          {
-            name: "name",
-            type: "string",
-            internalType: "string",
-          },
-          {
-            name: "salary",
-            type: "uint256",
-            internalType: "uint256",
-          },
-          {
-            name: "lastPaymentDate",
-            type: "uint256",
-            internalType: "uint256",
-          },
-          {
-            name: "isActive",
-            type: "bool",
-            internalType: "bool",
-          },
+          { name: "employeeAddress", type: "address", internalType: "address" },
+          { name: "name", type: "string", internalType: "string" },
+          { name: "salary", type: "uint256", internalType: "uint256" },
+          { name: "lastPaymentDate", type: "uint256", internalType: "uint256" },
+          { name: "isActive", type: "bool", internalType: "bool" },
           {
             name: "kycStatus",
             type: "uint8",
             internalType: "enum PayStream.KYCStatus",
           },
-          {
-            name: "kycDocumentHash",
-            type: "string",
-            internalType: "string",
-          },
-          {
-            name: "taxRate",
-            type: "uint256",
-            internalType: "uint256",
-          },
+          { name: "kycDocumentHash", type: "string", internalType: "string" },
+          { name: "taxRate", type: "uint256", internalType: "uint256" },
         ],
       },
     ],
@@ -422,31 +206,11 @@ const PayStreamABI = [
         type: "tuple[]",
         internalType: "struct PayStream.PaymentRecord[]",
         components: [
-          {
-            name: "employer",
-            type: "address",
-            internalType: "address",
-          },
-          {
-            name: "employee",
-            type: "address",
-            internalType: "address",
-          },
-          {
-            name: "amount",
-            type: "uint256",
-            internalType: "uint256",
-          },
-          {
-            name: "timestamp",
-            type: "uint256",
-            internalType: "uint256",
-          },
-          {
-            name: "taxAmount",
-            type: "uint256",
-            internalType: "uint256",
-          },
+          { name: "employer", type: "address", internalType: "address" },
+          { name: "employee", type: "address", internalType: "address" },
+          { name: "amount", type: "uint256", internalType: "uint256" },
+          { name: "timestamp", type: "uint256", internalType: "uint256" },
+          { name: "taxAmount", type: "uint256", internalType: "uint256" },
         ],
       },
     ],
@@ -456,19 +220,9 @@ const PayStreamABI = [
     type: "function",
     name: "viewBalance",
     inputs: [
-      {
-        name: "_tokenAddress",
-        type: "address",
-        internalType: "address",
-      },
+      { name: "_tokenAddress", type: "address", internalType: "address" },
     ],
-    outputs: [
-      {
-        name: "balance",
-        type: "uint256",
-        internalType: "uint256",
-      },
-    ],
+    outputs: [{ name: "balance", type: "uint256", internalType: "uint256" }],
     stateMutability: "view",
   },
   {
@@ -481,31 +235,11 @@ const PayStreamABI = [
         type: "tuple[]",
         internalType: "struct PayStream.PaymentRecord[]",
         components: [
-          {
-            name: "employer",
-            type: "address",
-            internalType: "address",
-          },
-          {
-            name: "employee",
-            type: "address",
-            internalType: "address",
-          },
-          {
-            name: "amount",
-            type: "uint256",
-            internalType: "uint256",
-          },
-          {
-            name: "timestamp",
-            type: "uint256",
-            internalType: "uint256",
-          },
-          {
-            name: "taxAmount",
-            type: "uint256",
-            internalType: "uint256",
-          },
+          { name: "employer", type: "address", internalType: "address" },
+          { name: "employee", type: "address", internalType: "address" },
+          { name: "amount", type: "uint256", internalType: "uint256" },
+          { name: "timestamp", type: "uint256", internalType: "uint256" },
+          { name: "taxAmount", type: "uint256", internalType: "uint256" },
         ],
       },
     ],
@@ -521,12 +255,7 @@ const PayStreamABI = [
         indexed: true,
         internalType: "address",
       },
-      {
-        name: "name",
-        type: "string",
-        indexed: false,
-        internalType: "string",
-      },
+      { name: "name", type: "string", indexed: false, internalType: "string" },
       {
         name: "employer",
         type: "address",
@@ -546,12 +275,7 @@ const PayStreamABI = [
         indexed: true,
         internalType: "address",
       },
-      {
-        name: "name",
-        type: "string",
-        indexed: false,
-        internalType: "string",
-      },
+      { name: "name", type: "string", indexed: false, internalType: "string" },
     ],
     anonymous: false,
   },

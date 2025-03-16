@@ -15,7 +15,7 @@ const useUpdateEmploeeSalary = () => {
           abi: PayStreamABI,
           address: getAddress(contractAddress ? contractAddress : ""),
           functionName: "updateEmployeeSalary",
-          args: [_employeeAddress, parseEther(_newDalary.toString())],
+          args: [_employeeAddress, parseEther(_newSalary.toString())],
         });
         return result;
       } catch (err) {
