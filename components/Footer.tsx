@@ -1,51 +1,61 @@
-import { Wallet } from 'lucide-react';
-import Link from 'next/link';
+import Image from "next/image";
 
-export function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-slate-200">
-      <div className="container py-12">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div>
-            <Link href="/" className="flex items-center space-x-2 mb-4">
-              <Wallet className="h-6 w-6" />
-              <span className="text-xl font-bold">PayStream</span>
-            </Link>
-            <p className="text-slate-400">
-              Revolutionizing payments for the digital age with real-time streaming capabilities.
+    <div>
+      <div className="flex justify-between py-[80px] px-[98px] bg-[#1E3A8A] text-white">
+        <div>
+          <Image src="/logo2.png" alt="logo" width={257} height={49} />
+          <p className="max-w-[376px] mt-[20px]">
+            Lorem ipsum dolor sit amet consectetur. Nulla convallis egestas
+            lobortis semper. Tempus sed gravida aliquam velit sed.
+          </p>
+          <div className="flex gap-[20px] mt-[20px]">
+            <Image src="/fb.svg" alt="facebook" width={24} height={24} />
+            <Image src="/tw.svg" alt="twitter" width={24} height={24} />
+            <Image src="/ig.svg" alt="instagram" width={24} height={24} />
+            <Image src="/yt.svg" alt="youtube" width={24} height={24} />
+          </div>
+        </div>
+        <div>
+          <h4 className="font-medium text-[21px] mb-[40px]">Quick Links</h4>
+          <ul className="flex flex-col gap-[16px]">
+            <li>About Us</li>
+            <li>Our Services</li>
+            <li>Testimonial</li>
+            <li>Pricelist</li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-medium text-[21px] mb-[40px]">Contact Us</h4>
+          <div className="flex flex-col gap-[16px]">
+            <p className="flex items-center gap-[5px]">
+              <Image src="/email.svg" alt="email" width={24} height={24} />
+              <span>hello@paystream.com</span>
+            </p>
+            <p className="flex items-center gap-[5px]">
+              <Image
+                src="/location.svg"
+                alt="location"
+                width={24}
+                height={24}
+              />
+              <span>Hq Paystream</span>
+            </p>
+            <p className="flex items-center gap-[5px]">
+              <Image src="/call.svg" alt="call" width={24} height={24} />
+              <span>+01 23567890</span>
             </p>
           </div>
-          <div>
-            <h3 className="font-semibold mb-4">Product</h3>
-            <ul className="space-y-2">
-              <li><Link href="#features" className="text-slate-400 hover:text-white">Features</Link></li>
-              <li><Link href="#pricing" className="text-slate-400 hover:text-white">Pricing</Link></li>
-              <li><Link href="#" className="text-slate-400 hover:text-white">Documentation</Link></li>
-              <li><Link href="#" className="text-slate-400 hover:text-white">API Reference</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li><Link href="#about" className="text-slate-400 hover:text-white">About</Link></li>
-              <li><Link href="#" className="text-slate-400 hover:text-white">Blog</Link></li>
-              <li><Link href="#" className="text-slate-400 hover:text-white">Careers</Link></li>
-              <li><Link href="#" className="text-slate-400 hover:text-white">Contact</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
-              <li><Link href="#" className="text-slate-400 hover:text-white">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-slate-400 hover:text-white">Terms of Service</Link></li>
-              <li><Link href="#" className="text-slate-400 hover:text-white">Cookie Policy</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-400">
-          <p>© {new Date().getFullYear()} PayStream. All rights reserved.</p>
         </div>
       </div>
-    </footer>
+      <div>
+        <p className="text-center py-[20px] bg-[#22D3EE] text-[#1E3A8A]">
+          &copy; {new Date().getFullYear()} PayStream. All Rights Reserved.
+        </p>
+      </div>
+    </div>
   );
-}
+};
+
+export default Footer;

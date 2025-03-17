@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 import useGetUserType from "@/hooks/ReadHooks/useGetUserType";
 
-export function Hero() {
+export function HeroComp() {
   const router = useRouter();
   const { status } = useAccount();
   const account = useAccount();
