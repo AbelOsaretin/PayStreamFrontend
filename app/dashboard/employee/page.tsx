@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { LineChart, Wallet, ArrowUpRight, Clock } from "lucide-react";
-import { DashNavBar } from "@/components/DashNavBar";
+import { DashNavBar } from "@/components/EmployeeDashNavBar";
 import { useAccount } from "wagmi";
 import { getAddress, formatEther } from "viem";
 import { toast } from "sonner";
@@ -71,7 +71,7 @@ export default function EmployeeDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container py-8">
-        <DashNavBar titleName={"Employee Dashboard"} />
+        <DashNavBar />
         <br />
         <br />
 

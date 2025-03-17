@@ -1,6 +1,6 @@
 import { useWriteContract } from "wagmi";
 import PayStreamABI from "../../ContractABI/PayStream";
-import { getAddress } from "viem";
+import { formatEther, getAddress } from "viem";
 import { useCallback } from "react";
 import { parseEther } from "viem";
 
@@ -10,12 +10,15 @@ const useSetEmployeeTaxRate = () => {
   const contractAddress = process.env.NEXT_PUBLIC_PAYSTREAM_CONTRACT_ADDRESS;
   return useCallback(
     async (_employeeAddress: string, _taxRate: number) => {
+      const employeeAddress = getAddress(
+        _employeeAddress ? _employeeAddress : ""
+      );
       try {
         const result = writeContract({
           abi: PayStreamABI,
           address: getAddress(contractAddress ? contractAddress : ""),
           functionName: "setEmployeeTaxRate",
-          args: [_employeeAddress, _taxRate.toString()],
+          args: [employeeAddress, BigInt(_taxRate)],
         });
         console.log("Hook Tax Rate: ", _taxRate.toString());
         return result;

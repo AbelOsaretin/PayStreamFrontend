@@ -1,0 +1,2 @@
+export const tokenAddress = 0xb465d7c1fc8b8498654c5ab00dfbfb877ccfd967;
+export const payStreamAddress = 0x8c3c380efbf21bd0e0b46fb3289cb67e1dbedd1a;

@@ -8,10 +8,11 @@ const useDepositToken = () => {
   const { writeContract } = useWriteContract();
 
   const contractAddress = process.env.NEXT_PUBLIC_PAYSTREAM_CONTRACT_ADDRESS;
-  const tokenAddress = process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS;
+  const tokenAddr = process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS;
   return useCallback(
     async (_amount: number) => {
       try {
+        const tokenAddress = getAddress(tokenAddr ? tokenAddr : "");
         const result = writeContract({
           abi: PayStreamABI,
           address: getAddress(contractAddress ? contractAddress : ""),
@@ -24,7 +25,7 @@ const useDepositToken = () => {
         throw err;
       }
     },
-    [writeContract, tokenAddress, contractAddress]
+    [writeContract, tokenAddr, contractAddress]
   );
 };
 

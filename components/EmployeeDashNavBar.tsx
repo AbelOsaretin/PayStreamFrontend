@@ -12,7 +12,7 @@ export function DashNavBar() {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <Wallet className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold">Employer Dashboard</span>
+          <span className="text-xl font-bold">Employee Dashboard</span>
         </Link>
         <WalletComponents />
       </div>

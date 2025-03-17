@@ -12,11 +12,14 @@ const useApproveToken = () => {
   return useCallback(
     async (_amount: number) => {
       try {
+        const payStreamAddress = getAddress(
+          contractAddress ? contractAddress : ""
+        );
         const approveAmount = writeContract({
           abi: TestTokenABI,
           address: getAddress(tokenAddress ? tokenAddress : ""),
           functionName: "approve",
-          args: [contractAddress, parseEther(_amount.toString())],
+          args: [payStreamAddress, parseEther(_amount.toString())],
         });
         console.log("Approved Amount", _amount);
         return approveAmount;

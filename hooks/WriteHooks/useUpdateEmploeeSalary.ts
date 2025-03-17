@@ -11,11 +11,14 @@ const useUpdateEmploeeSalary = () => {
   return useCallback(
     async (_employeeAddress: string, _newSalary: number) => {
       try {
+        const employeeAddress = getAddress(
+          _employeeAddress ? _employeeAddress : ""
+        );
         const result = writeContract({
           abi: PayStreamABI,
           address: getAddress(contractAddress ? contractAddress : ""),
           functionName: "updateEmployeeSalary",
-          args: [_employeeAddress, parseEther(_newSalary.toString())],
+          args: [employeeAddress, parseEther(_newSalary.toString())],
         });
         return result;
       } catch (err) {

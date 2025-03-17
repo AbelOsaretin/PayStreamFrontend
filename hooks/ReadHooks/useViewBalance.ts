@@ -11,7 +11,7 @@ const useViewBalance = () => {
     abi: PayStreamABI,
     address: getAddress(contractAddress ? contractAddress : ""),
     functionName: "viewBalance",
-    args: [tokenAdd],
+    args: [tokenAddress],
   });
 
   return result;

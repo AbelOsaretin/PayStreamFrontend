@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Wallet } from "lucide-react";
 import Link from "next/link";
-import { useAuth } from "@/lib/auth";
+
 import { AppKitButton } from "@reown/appkit/react"; // ✅ Import the button
 import { WalletComponents } from "./WalletComponent";
 

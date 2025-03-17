@@ -288,7 +288,7 @@ export default function EmployerDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container py-8">
-        <DashNavBar titleName={"Employer Dashboard"} />
+        <DashNavBar />
 
         <br />
         <br />

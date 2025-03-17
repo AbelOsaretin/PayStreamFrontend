@@ -8,15 +8,20 @@ const useProcessPayment = () => {
   const { writeContract } = useWriteContract();
 
   const contractAddress = process.env.NEXT_PUBLIC_PAYSTREAM_CONTRACT_ADDRESS;
-  const tokenAddress = process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS;
+  const tokenAddr = process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS;
   return useCallback(
     async (_employeeAddress: string) => {
       try {
+        const employeeAddress = getAddress(
+          _employeeAddress ? _employeeAddress : ""
+        );
+
+        const tokenAddress = getAddress(tokenAddr ? tokenAddr : "");
         const result = writeContract({
           abi: PayStreamABI,
           address: getAddress(contractAddress ? contractAddress : ""),
           functionName: "processPayment",
-          args: [_employeeAddress, tokenAddress],
+          args: [employeeAddress, tokenAddress],
         });
         return result;
       } catch (err) {
@@ -24,7 +29,7 @@ const useProcessPayment = () => {
         throw err;
       }
     },
-    [writeContract, tokenAddress, contractAddress]
+    [writeContract, tokenAddr, contractAddress]
   );
 };
 

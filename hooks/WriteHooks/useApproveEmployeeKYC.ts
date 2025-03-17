@@ -9,12 +9,15 @@ const useApproveEmployeeKYC = () => {
   const contractAddress = process.env.NEXT_PUBLIC_PAYSTREAM_CONTRACT_ADDRESS;
   return useCallback(
     async (_employeeAddress: string) => {
+      const employeeAddress = getAddress(
+        _employeeAddress ? _employeeAddress : ""
+      );
       try {
         const result = writeContract({
           abi: PayStreamABI,
           address: getAddress(contractAddress ? contractAddress : ""),
           functionName: "approveEmployeeKYC",
-          args: [_employeeAddress],
+          args: [employeeAddress],
         });
         return result;
       } catch (err) {
